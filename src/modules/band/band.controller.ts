@@ -7,27 +7,27 @@ export class BandController {
   constructor(private readonly bandService: BandService) {}
 
   @Get()
-  getAll(): Band[] {
+  getAll(): Promise<Band[]> {
     return this.bandService.getAll();
   }
 
   @Get(':id')
-  getById(@Param('id') id: string): Band {
+  getById(@Param('id') id: string): Promise<Band> {
     return this.bandService.getById(id);
   }
 
   @Delete(':id')
-  deleteById(@Param('id') id: string): Band {
+  deleteById(@Param('id') id: string): Promise<Band> {
     return this.bandService.deleteById(id);
   }
 
   @Put(':id')
-  updateById(@Param('id') id: string, band: Band): Band {
+  updateById(@Param('id') id: string, band: Band): Promise<Band> {
     return this.bandService.updateById(id, band);
   }
 
   @Post()
-  create(@Body() band: Band): Band {
+  create(@Body() band: Band): Promise<Band> {
     return this.bandService.create(band);
   }
 }
