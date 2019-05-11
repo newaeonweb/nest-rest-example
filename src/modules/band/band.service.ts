@@ -1,45 +1,31 @@
 import { Injectable } from '@nestjs/common';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
 import { Band } from './interface/band.interface';
+import { CreateBandDto } from './dto/create-band.dto';
 
 @Injectable()
 export class BandService {
+  constructor(@InjectModel('Band') private readonly bandModel: Model<Band>) {}
 
-  getAll(): Band[] {
-    return [
-      {id: '1', name: 'Metallica', country: 'USA'},
-      {id: '2', name: 'Iron Maiden', country: 'England'},
-    ];
+  async getAll(): Promise<Band[]> {
+    return await this.bandModel.find();
   }
 
-  getById(id: string): Band {
-    return {
-      id: `${id}`,
-      name: 'Metallica',
-      country: 'USA',
-    };
+  async getById(id: string): Promise<Band> {
+    return await this.bandModel.findOne({ _id: id });
   }
 
-  deleteById(id: string): Band {
-    return {
-      id: `${id}`,
-      name: 'Metallica',
-      country: 'USA',
-    };
+  async deleteById(id: string): Promise<Band> {
+    return await this.bandModel.findByIdAndRemove(id);
   }
 
-  updateById(id: string, band: Band): Band {
-    return {
-      id: `${id}`,
-      name: 'Metallica',
-      country: 'USA',
-    };
+  async updateById(id: string, band: Band): Promise<Band> {
+    return await this.bandModel.findByIdAndUpdate(id, band, { new: true });
   }
 
-  create(band: Band): Band {
-    return {
-      id: '3',
-      name: 'Sepultura',
-      country: 'Brasil',
-    };
+  async create(createBandDto: CreateBandDto): Promise<Band> {
+    const createdband = new this.bandModel(createBandDto);
+    return await createdband.save();
   }
 }
