@@ -5,7 +5,7 @@ import { AppService } from './app.service';
 import { BandModule } from './modules/band/band.module';
 
 @Module({
-  imports: [BandModule, MongooseModule.forRoot('mongodb://localhost/nest')],
+  imports: [BandModule, MongooseModule.forRoot('mongodb://localhost/nest', { useFindAndModify: false })],
   controllers: [AppController],
   providers: [AppService],
 })
