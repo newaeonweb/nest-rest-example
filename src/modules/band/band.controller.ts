@@ -9,12 +9,16 @@ import {
 } from '@nestjs/common';
 import { Band } from './interface/band.interface';
 import { BandService } from './band.service';
+import { ApiResponse, ApiUseTags, ApiOkResponse } from '@nestjs/swagger';
 
+@ApiUseTags('band')
 @Controller('band')
 export class BandController {
   constructor(private readonly bandService: BandService) {}
 
   @Get()
+  @ApiOkResponse({ description: 'OK.'})
+  @ApiResponse({ status: 403, description: 'Forbidden.'})
   getAll(): Promise<Band[]> {
     return this.bandService.getAll();
   }
