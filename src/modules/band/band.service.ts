@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Band } from './interface/band.interface';
-import { CreateBandDto } from './dto/create-band.dto';
 
 @Injectable()
 export class BandService {
@@ -24,8 +23,7 @@ export class BandService {
     return await this.bandModel.findByIdAndUpdate(id, band, { new: true });
   }
 
-  async create(createBandDto: CreateBandDto): Promise<Band> {
-    const createdband = new this.bandModel(createBandDto);
-    return await createdband.save();
+  async create(band: Band): Promise<Band> {
+    return await new this.bandModel(band).save();
   }
 }
