@@ -22,7 +22,7 @@ export class BandController {
   }
 
   @Put(':id')
-  updateById(@Param('id') id: string, band: Band): Promise<Band> {
+  updateById(@Param('id') id: string, @Body() band: Band): Promise<Band> {
     return this.bandService.updateById(id, band);
   }
 
