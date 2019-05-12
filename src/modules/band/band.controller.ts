@@ -1,4 +1,12 @@
-import { Controller, Get, Param, Delete, Post, Put, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Param,
+  Delete,
+  Post,
+  Put,
+  Body,
+} from '@nestjs/common';
 import { Band } from './interface/band.interface';
 import { BandService } from './band.service';
 
