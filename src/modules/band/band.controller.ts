@@ -10,6 +10,7 @@ import {
 import { Band } from './interface/band.interface';
 import { BandService } from './band.service';
 import { ApiResponse, ApiUseTags, ApiOkResponse } from '@nestjs/swagger';
+import { BandDto } from './dto/band.dto';
 
 @ApiUseTags('band')
 @Controller('band')
@@ -17,8 +18,8 @@ export class BandController {
   constructor(private readonly bandService: BandService) {}
 
   @Get()
-  @ApiOkResponse({ description: 'OK.'})
-  @ApiResponse({ status: 403, description: 'Forbidden.'})
+  @ApiOkResponse({ description: 'OK.' })
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
   getAll(): Promise<Band[]> {
     return this.bandService.getAll();
   }
@@ -34,12 +35,12 @@ export class BandController {
   }
 
   @Put(':id')
-  updateById(@Param('id') id: string, @Body() band: Band): Promise<Band> {
+  updateById(@Param('id') id: string, @Body() band: BandDto): Promise<Band> {
     return this.bandService.updateById(id, band);
   }
 
   @Post()
-  create(@Body() band: Band): Promise<Band> {
+  create(@Body() band: BandDto): Promise<Band> {
     return this.bandService.create(band);
   }
 }
