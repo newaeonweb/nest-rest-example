@@ -1,0 +1,35 @@
+{
+  "spellright.language": [
+    "en"
+  ],
+  "spellright.documentTypes": [
+    "markdown",
+    "latex",
+    "plaintext"
+  ],
+  "editor.formatOnPaste": true,
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "[js]": {
+    "editor.formatOnSave": true
+  },
+  "[html]": {
+    "editor.formatOnSave": true
+  },
+  "[css]": {
+    "editor.formatOnSave": true
+  },
+  "[edge]": {
+    "editor.formatOnSave": true
+  },
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "es5",
+  "prettier.bracketSpacing": true,
+  "emmet.includeLanguages": {
+    "edge": "html"
+  },
+  "files.associations": {
+    "*.css": "postcss"
+  }
+}

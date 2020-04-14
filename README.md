@@ -1,7 +1,7 @@
 # Creating Restful API
 
 ```
-nest g modules modules/band
+nest g module modules/band
 
 ```
 

@@ -6,11 +6,13 @@ import {
   Post,
   Put,
   Body,
+  UseGuards
 } from '@nestjs/common';
 import { Band } from './interface/band.interface';
 import { BandService } from './band.service';
 import { ApiResponse, ApiUseTags, ApiOkResponse } from '@nestjs/swagger';
 import { BandDto } from './dto/band.dto';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @ApiUseTags('band')
 @Controller('band')
@@ -20,6 +22,7 @@ export class BandController {
   @Get()
   @ApiOkResponse({ description: 'OK.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @UseGuards(JwtAuthGuard)
   getAll(): Promise<Band[]> {
     return this.bandService.getAll();
   }
